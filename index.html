@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Gráficas Primitivas - Polígonos</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        canvas {
+            border: 2px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="350"></canvas>
+
+    <script>
+        function drawPolygon(ctx, pointsX, pointsY, fill = false) {
+            ctx.beginPath();
+            ctx.moveTo(pointsX[0], pointsY[0]);
+            for (let i = 1; i < pointsX.length; i++) {
+                ctx.lineTo(pointsX[i], pointsY[i]);
+            }
+            ctx.closePath();
+            if (fill) {
+                ctx.fill();
+            }
+            ctx.stroke();
+        }
+
+        function drawPolyline(ctx, pointsX, pointsY) {
+            ctx.beginPath();
+            ctx.moveTo(pointsX[0], pointsY[0]);
+            for (let i = 1; i < pointsX.length; i++) {
+                ctx.lineTo(pointsX[i], pointsY[i]);
+            }
+            ctx.stroke();
+        }
+
+        window.onload = function() {
+            const canvas = document.getElementById('canvas');
+            const ctx = canvas.getContext('2d');
+            ctx.lineWidth = 4;
+
+            // Aplicamos un desplazamiento (translate) para centrar la figura mejor
+            ctx.translate(20, 20);
+
+            // Polígono orI
+            drawPolygon(ctx, [17, 41, 76, 41, 17], [85, 44, 67, 138, 85], true);
+
+            // Polígono pI
+            drawPolygon(ctx, [26, 76, 110, 48, 26], [168, 67, 117, 221, 168]);
+
+            // Polígono oI
+            drawPolygon(ctx, [65, 109, 101, 87, 69], [192, 122, 182, 206, 192], true);
+
+            // Polígono cI
+            drawPolygon(ctx, [48, 65, 87, 95, 48], [221, 192, 206, 243, 221]);
+
+            // Polígono f
+            drawPolygon(ctx, 
+                [76, 130, 183, 152, 159, 174, 165, 154, 131, 109, 95, 87, 101, 110, 76], 
+                [67, 54, 67, 117, 182, 206, 243, 249, 240, 249, 243, 206, 182, 117, 67]);
+
+            // Polígono b
+            drawPolygon(ctx, [131, 144, 131, 118], [240, 245, 250, 245], true);
+
+            // Polígono cD
+            drawPolygon(ctx, [165, 174, 195, 214, 165], [243, 206, 192, 221, 243]);
+
+            // Polígono oD
+            drawPolygon(ctx, [174, 159, 153, 195, 174], [206, 182, 124, 192, 206], true);
+
+            // Polígono pD
+            drawPolygon(ctx, [152, 183, 238, 214, 152], [117, 67, 168, 220, 117]);
+
+            // Polígono orD
+            drawPolygon(ctx, [183, 220, 246, 221, 183], [67, 44, 85, 138, 67], true);
+
+            // Polígono n
+            drawPolygon(ctx, [131, 131, 112, 105, 114, 131, 145, 155, 150, 131, 131], 
+                              [240, 234, 230, 223, 223, 225, 223, 223, 230, 234, 240], true);
+
+            // Polilínea
+            drawPolyline(ctx, [95, 109, 131, 154, 165], [243, 260, 267, 260, 243]);
+        };
+    </script>
+</body>
+</html>
